@@ -14,5 +14,9 @@
     "react": "19.1.0",
     "react-native": "0.81.4"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^5.0.2",
+    "babel-preset-expo": "^54.0.3"
+  }
 }
