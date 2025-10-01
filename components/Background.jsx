@@ -14,7 +14,7 @@ export function Background({ style, ...rest }) {
   const colors = useThemeColors()
   return (
     <View
-      style={[style, styles, { backgroundColor: colors.greyLight }]}
+      style={[style, styles, { backgroundColor: colors.background }]}
       {...rest}
     />
   )

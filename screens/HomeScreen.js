@@ -16,7 +16,11 @@ export function HomeScreen() {
     >
       <Header />
       <Background style={styles.body}>
-        <ThemedText typography="headline" color="textWhite">
+        <ThemedText
+          typography="bodyLarger"
+          color="textBlack"
+          style={styles.vers}
+        >
           PoéTri - HomeScreen
         </ThemedText>
       </Background>
@@ -32,5 +36,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', // centré horizontalement
     justifyContent: 'center', // centré verticalement
+  },
+  vers: {
+    backgroundColor: '#FFFFFF',
+    padding: 5,
+    borderRadius: 15,
   },
 })
