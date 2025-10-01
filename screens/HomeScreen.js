@@ -21,12 +21,12 @@ export function HomeScreen() {
           style={{ width: 24, height: 24 }}
         />
         <ThemedText typography="headline" color="textWhite">
-          PoéTri - HomeScreen
+          PoéTri
         </ThemedText>
       </View>
       <Background style={styles.body}>
         <ThemedText typography="headline" color="textWhite">
-          PoéTri
+          PoéTri - HomeScreen
         </ThemedText>
       </Background>
     </SafeAreaView>

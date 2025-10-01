@@ -21,12 +21,12 @@ export function ScoresScreen() {
           style={{ width: 24, height: 24 }}
         />
         <ThemedText typography="headline" color="textWhite">
-          ScoreScreen
+          PoéTri
         </ThemedText>
       </View>
       <Background style={styles.body}>
         <ThemedText typography="headline" color="textWhite">
-          PoéTri
+          ScoreScreen
         </ThemedText>
       </Background>
     </SafeAreaView>
