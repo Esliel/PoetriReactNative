@@ -9,7 +9,7 @@ import { poemesDataBase } from '@data/poemesDataBase'
 import { getPoem } from '@utils/poemUtils'
 // *****************************************************************************//
 
-export function HomeScreen() {
+export function GameScreen() {
   const colors = useThemeColors()
   const poeme = poemesDataBase[0]
   const vers = getPoem(poeme)
@@ -20,9 +20,16 @@ export function HomeScreen() {
     >
       <Header />
       <Background style={styles.body}>
-        <ThemedText typography="headline" color="primary" style={styles.vers}>
-          Démarrer le jeu
-        </ThemedText>
+        {vers.map((v, i) => (
+          <ThemedText
+            key={i}
+            typography="headline"
+            color="textBlack"
+            style={styles.vers}
+          >
+            {v}
+          </ThemedText>
+        ))}
       </Background>
     </SafeAreaView>
   )
@@ -36,12 +43,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', // centré horizontalement
     justifyContent: 'center', // centré verticalement
-    backgroundColor: 'primary',
   },
   vers: {
     backgroundColor: '#FFFFFF',
-    padding: 15,
-    borderRadius: 30,
+    padding: 5,
+    borderRadius: 15,
     margin: 4,
   },
 })
