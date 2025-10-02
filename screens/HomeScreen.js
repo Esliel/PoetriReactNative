@@ -5,10 +5,14 @@ import { Header } from '@components/Header'
 import { Background } from '@components/Background'
 import { ThemedText } from '@components/ThemedText'
 import { useThemeColors } from '@hooks/useThemeColors'
+import { poemesDataBase } from '@data/poemesDataBase'
+import { getPoem } from '@utils/poemUtils'
 // *****************************************************************************//
 
 export function HomeScreen() {
   const colors = useThemeColors()
+  const poeme = poemesDataBase[0]
+  const vers = getPoem(poeme)
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.primary }]}
@@ -16,13 +20,16 @@ export function HomeScreen() {
     >
       <Header />
       <Background style={styles.body}>
-        <ThemedText
-          typography="bodyLarger"
-          color="textBlack"
-          style={styles.vers}
-        >
-          PoéTri - HomeScreen
-        </ThemedText>
+        {vers.map((v, i) => (
+          <ThemedText
+            key={i}
+            typography="bodyLarger"
+            color="textBlack"
+            style={styles.vers}
+          >
+            {v}
+          </ThemedText>
+        ))}
       </Background>
     </SafeAreaView>
   )
