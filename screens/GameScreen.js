@@ -57,14 +57,14 @@ const styles = StyleSheet.create({
   },
   versvides: {
     backgroundColor: '#FFFFFF',
-    padding: 5,
+    padding: 4,
     borderRadius: 15,
-    margin: 4,
+    margin: 3,
   },
   vers: {
     backgroundColor: '#FFFFFF',
-    padding: 5,
+    padding: 4,
     borderRadius: 15,
-    margin: 4,
+    margin: 2,
   },
 })
