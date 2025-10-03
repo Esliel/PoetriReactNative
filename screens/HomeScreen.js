@@ -1,5 +1,5 @@
 // **************************** IMPORTS *****************************************//
-import { StyleSheet, Image, View } from 'react-native'
+import { StyleSheet, Image, View, Button, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Header } from '@components/Header'
 import { Background } from '@components/Background'
@@ -9,7 +9,7 @@ import { poemesDataBase } from '@data/poemesDataBase'
 import { getPoem } from '@utils/poemUtils'
 // *****************************************************************************//
 
-export function HomeScreen() {
+export function HomeScreen({ navigation }) {
   const colors = useThemeColors()
   const poeme = poemesDataBase[0]
   const vers = getPoem(poeme)
@@ -20,9 +20,14 @@ export function HomeScreen() {
     >
       <Header />
       <Background style={styles.body}>
-        <ThemedText typography="headline" color="primary" style={styles.vers}>
-          Démarrer le jeu
-        </ThemedText>
+        <TouchableOpacity // bouton au style personalisable
+          onPress={() => navigation.navigate('Game')}
+          style={styles.button}
+        >
+          <ThemedText typography="headline" color="primary" style={styles.vers}>
+            Démarrer le jeu
+          </ThemedText>
+        </TouchableOpacity>
       </Background>
     </SafeAreaView>
   )
@@ -34,8 +39,8 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    alignItems: 'center', // centré horizontalement
-    justifyContent: 'center', // centré verticalement
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'primary',
   },
   vers: {
@@ -43,5 +48,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 30,
     margin: 4,
+    textAlign: 'center',
+  },
+  button: {
+    borderRadius: 30,
+    overflow: 'hidden',
   },
 })
