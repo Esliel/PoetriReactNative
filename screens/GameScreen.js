@@ -14,6 +14,9 @@ export function GameScreen() {
   const poeme = poemesDataBase[0]
   const vers = getPoem(poeme)
   const versAleatoire = [...vers].sort(() => Math.random() - 0.5)
+  //  [...vers] : c'est le spread operator — il sert à créer une copie du tableau
+  // () => Math.random() - 0.5 : cette fonction retourne un nombre aléatoire entre -0.5 et +0.5,
+  // ce qui donne à sort un moyen de décider aléatoirement si deux éléments doivent être échangés ou non
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.primary }]}
