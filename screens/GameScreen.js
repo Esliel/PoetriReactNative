@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', // centré horizontalement
     justifyContent: 'center', // centré verticalement
+    backgroundColor: 'background',
   },
   vers: {
     backgroundColor: '#FFFFFF',

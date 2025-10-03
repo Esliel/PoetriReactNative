@@ -12,12 +12,7 @@ import { View } from 'react-native'
 
 export function Background({ style, ...rest }) {
   const colors = useThemeColors()
-  return (
-    <View
-      style={[style, styles, { backgroundColor: colors.background }]}
-      {...rest}
-    />
-  )
+  return <View style={[style, styles]} {...rest} />
 }
 
 const styles = {
