@@ -23,7 +23,17 @@ export function GameScreen() {
         {vers.map((v, i) => (
           <ThemedText
             key={i}
-            typography="headline"
+            typography="bodyLarge"
+            color="textWhite"
+            style={styles.versvides}
+          >
+            {v}
+          </ThemedText>
+        ))}
+        {vers.map((v, i) => (
+          <ThemedText
+            key={i}
+            typography="bodyLarger"
             color="textBlack"
             style={styles.vers}
           >
@@ -43,7 +53,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', // centré horizontalement
     justifyContent: 'center', // centré verticalement
-    backgroundColor: 'background',
+    backgroundColor: '#EFEFEF',
+  },
+  versvides: {
+    backgroundColor: '#FFFFFF',
+    padding: 5,
+    borderRadius: 15,
+    margin: 4,
   },
   vers: {
     backgroundColor: '#FFFFFF',
