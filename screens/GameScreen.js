@@ -13,6 +13,7 @@ export function GameScreen() {
   const colors = useThemeColors()
   const poeme = poemesDataBase[0]
   const vers = getPoem(poeme)
+  const versAleatoire = [...vers].sort(() => Math.random() - 0.5)
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.primary }]}
@@ -30,7 +31,7 @@ export function GameScreen() {
             {v}
           </ThemedText>
         ))}
-        {vers.map((v, i) => (
+        {versAleatoire.map((v, i) => (
           <ThemedText
             key={i}
             typography="bodyLarger"
