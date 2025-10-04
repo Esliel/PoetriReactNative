@@ -24,16 +24,19 @@ export function GameScreen() {
     >
       <Header />
       <Background style={styles.body}>
+        {/* 
+        Affichage de l'emplacement des vers dans l'ordre
         {vers.map((v, i) => (
           <ThemedText
             key={i}
             typography="bodyLarge"
-            color="textWhite"
+            color="textBlack"
             style={styles.versvides}
           >
             {v}
           </ThemedText>
-        ))}
+        ))} 
+      */}
         {versAleatoire.map((v, i) => (
           <ThemedText
             key={i}
