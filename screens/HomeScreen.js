@@ -6,13 +6,12 @@ import { Background } from '@components/Background'
 import { ThemedText } from '@components/ThemedText'
 import { useThemeColors } from '@hooks/useThemeColors'
 import { poemesDataBase } from '@data/poemesDataBase'
-import { getPoem } from '@utils/poemUtils'
+import { authorDataBase } from '@data/authorDataBase'
 // *****************************************************************************//
 
 export function HomeScreen({ navigation }) {
   const colors = useThemeColors()
-  const poeme = poemesDataBase[0]
-  const vers = getPoem(poeme)
+
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors.primary }]}
@@ -20,14 +19,40 @@ export function HomeScreen({ navigation }) {
     >
       <Header />
       <Background style={styles.body}>
-        <TouchableOpacity // bouton au style personalisable
-          onPress={() => navigation.navigate('Game')}
-          style={styles.button}
+        <ThemedText
+          typography="headline"
+          color="textWhite"
+          style={styles.consigne}
         >
-          <ThemedText typography="headline" color="primary" style={styles.vers}>
-            Démarrer le jeu
-          </ThemedText>
-        </TouchableOpacity>
+          Choisis un poème à réorganiser :
+        </ThemedText>
+
+        {poemesDataBase.map((poeme) => {
+          const auteur =
+            authorDataBase.find((a) => a.idAuthor === poeme.idAuthor) || {}
+          const nomAffiche =
+            auteur.prenomAuteur && auteur.nomAuteur
+              ? `${auteur.prenomAuteur} ${auteur.nomAuteur}`
+              : poeme.idAuthor
+
+          return (
+            <TouchableOpacity
+              key={poeme.idPoeme}
+              style={styles.button}
+              onPress={() =>
+                navigation.navigate('Game', { poemeId: poeme.idPoeme })
+              }
+            >
+              <ThemedText
+                typography="bodyLarger"
+                color="textBlack"
+                style={styles.choixPoeme}
+              >
+                {poeme.titrePoeme}, {nomAffiche}
+              </ThemedText>
+            </TouchableOpacity>
+          )
+        })}
       </Background>
     </SafeAreaView>
   )
@@ -43,11 +68,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'primary',
   },
-  vers: {
+  consigne: {
+    paddingBottom: 5,
+  },
+  choixPoeme: {
     backgroundColor: '#FFFFFF',
-    padding: 15,
+    padding: 5,
     borderRadius: 30,
-    margin: 4,
+    margin: 6,
     textAlign: 'center',
   },
   button: {

@@ -3,18 +3,23 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native' // StyleSheet pour gérer le style ; TouchableOpacity pour rendre les éléments "cliquables" et détecter les pressions tactiles
 import { SafeAreaView } from 'react-native-safe-area-context' // SafeAreaView permet de respecter les zones sûres de l'écran (ex : éviter la zone de l'encoche sur iPhone)
 import DragList from 'react-native-draglist' // Composant DragList pour avoir une liste dont on peut réordonner les éléments par glisser-déposer
+import { useRoute } from '@react-navigation/native' // import pour récupérer params
 // components / hooks / data / utils
 import { Header } from '@components/Header'
 import { Background } from '@components/Background'
 import { ThemedText } from '@components/ThemedText'
 import { useThemeColors } from '@hooks/useThemeColors'
 import { poemesDataBase } from '@data/poemesDataBase'
-import { getPoem } from '@utils/poemUtils'
 // *****************************************************************************//
 
 export function GameScreen() {
   const colors = useThemeColors()
-  const poeme = poemesDataBase[0]
+
+  const route = useRoute()
+
+  const { poemeId } = route.params || {} // récupération du paramètre poemeId
+  const poeme =
+    poemesDataBase.find((p) => p.idPoeme === poemeId) || poemesDataBase[0] // poème choisi ou premier par défaut
 
   // Préparation des vers sous forme de tableau {key, text} :
   const versArray = Object.entries(poeme)
