@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'primary',
   },
   consigne: {
-    paddingBottom: 5,
+    paddingBottom: 9,
   },
   choixPoeme: {
     backgroundColor: '#FFFFFF',

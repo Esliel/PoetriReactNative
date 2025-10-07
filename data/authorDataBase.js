@@ -1,8 +1,29 @@
 export const authorDataBase = [
   {
+    idAuthor: 'baudelaire',
+    prenomAuteur: 'Charles',
+    nomAuteur: 'Baudelaire',
+    nationaliteAuteur: 'fr',
+    femme: false,
+  },
+  {
+    idAuthor: 'desbordesvalmore',
+    prenomAuteur: 'Marceline',
+    nomAuteur: 'Desbordes-Valmore',
+    nationaliteAuteur: 'fr',
+    femme: true,
+  },
+  {
     idAuthor: 'hugo',
     prenomAuteur: 'Victor',
     nomAuteur: 'Hugo',
+    nationaliteAuteur: 'fr',
+    femme: false,
+  },
+  {
+    idAuthor: 'lafontaine',
+    prenomAuteur: 'Jean',
+    nomAuteur: 'de La Fontaine',
     nationaliteAuteur: 'fr',
     femme: false,
   },
@@ -12,5 +33,26 @@ export const authorDataBase = [
     nomAuteur: 'de Lamartine',
     nationaliteAuteur: 'fr',
     femme: false,
+  },
+  {
+    idAuthor: 'noailles',
+    prenomAuteur: 'Anna',
+    nomAuteur: 'de Noailles',
+    nationaliteAuteur: 'fr',
+    femme: true,
+  },
+  {
+    idAuthor: 'verlaine',
+    prenomAuteur: 'Paul',
+    nomAuteur: 'Verlaine',
+    nationaliteAuteur: 'fr',
+    femme: false,
+  },
+  {
+    idAuthor: 'vivien',
+    prenomAuteur: 'Renée',
+    nomAuteur: 'Vivien',
+    nationaliteAuteur: 'fr',
+    femme: true,
   },
 ]
