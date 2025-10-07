@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // **************************** IMPORTS *****************************************//
 import { StyleSheet, TouchableOpacity } from 'react-native' // StyleSheet pour gérer le style ; TouchableOpacity pour rendre les éléments "cliquables" et détecter les pressions tactiles
 import { SafeAreaView } from 'react-native-safe-area-context' // SafeAreaView permet de respecter les zones sûres de l'écran (ex : éviter la zone de l'encoche sur iPhone)
@@ -13,40 +13,58 @@ import { getPoem } from '@utils/poemUtils'
 // *****************************************************************************//
 
 export function GameScreen() {
-  const colors = useThemeColors() // Récupère les couleurs du thème actif pour styliser l'écran
-  const poeme = poemesDataBase[0] // choix du poéme à réordonner
+  const colors = useThemeColors()
+  const poeme = poemesDataBase[0]
 
   // Préparation des vers sous forme de tableau {key, text} :
   const versArray = Object.entries(poeme)
-    .filter(([key]) => key.startsWith('vers')) // Ne garde que les propriétés dont la clé commence par "vers" (ex : vers01, vers02, etc.)
-    .map(([key, text]) => ({ key, text })) // Transforme chaque entrée en un objet {key, text} pour faciliter l'affichage
+    .filter(([key]) => key.startsWith('vers'))
+    .map(([key, text]) => ({ key, text }))
 
-  // Etat pour gérer dynamiquement l'ordre des vers (initialisé dans un ordre aléatoire) :
+  // Défini l'ordre correct attendu (adapter selon nombre de vers) :
+  const ordreAttendu = versArray.map((v) => v.key).sort()
+
+  // Etat pour gérer dynamiquement l'ordre des vers (initialisé de façon aléatoire) :
   const [vers, setVers] = useState(
     [...versArray].sort(() => Math.random() - 0.5)
-  )
+  ) // La fonction Math.random() - 0.5 génère des nombres aléatoires entre -0.5 et +0.5 // La méthode sort utilise cela pour mélanger aléatoirement les éléments du tableau
   // On crée une copie du tableau versArray avec le spread operator [...versArray]
-  // La fonction Math.random() - 0.5 génère des nombres aléatoires entre -0.5 et +0.5
-  // La méthode sort utilise cela pour mélanger aléatoirement les éléments du tableau
+  //
+  // Etat pour savoir si l'ordre est correct :
+  const [ordreCorrect, setOrdreCorrect] = useState(false)
 
   // Fonction appelée quand l'utilisateur déplace un vers dans la liste :
   async function onReordered(fromIndex, toIndex) {
-    const copie = [...vers] // Création d'une copie du tableau actuel des vers
-    const [removed] = copie.splice(fromIndex, 1) // Supprime le vers à la position fromIndex (celui qui est déplacé)
-    copie.splice(toIndex, 0, removed) // Insère le vers supprimé à la nouvelle position toIndex
-    setVers(copie) // Met à jour l'état avec le nouveau tableau ordonné
+    const copie = [...vers]
+    const [removed] = copie.splice(fromIndex, 1)
+    copie.splice(toIndex, 0, removed)
+    setVers(copie)
+
+    // Vérification de l'ordre après déplacement :
+    const ordreUtilisateur = copie.map((item) => item.key)
+    const estDansLeBonOrdre = ordreUtilisateur.every(
+      (val, idx) => val === ordreAttendu[idx]
+    )
+    setOrdreCorrect(estDansLeBonOrdre)
   }
+
+  // Effet pour déclencher une action quand l'ordre est correct :
+  useEffect(() => {
+    if (ordreCorrect) {
+      alert('Félicitations ! Tous les vers sont dans le bon ordre :)')
+    }
+  }, [ordreCorrect])
 
   // Fonction pour afficher chaque vers, avec gestion du drag :
   function renderItem({ item, onDragStart, onDragEnd }) {
     return (
       <TouchableOpacity
-        onPressIn={onDragStart} // Démarre le drag quand l'utilisateur appuie
-        onPressOut={onDragEnd} // Termine le drag quand l'utilisateur relâche
+        onPressIn={onDragStart}
+        onPressOut={onDragEnd}
         style={styles.vers}
       >
         <ThemedText typography="bodyLarger" color="textBlack">
-          {item.text} {/* Affiche le texte du vers */}
+          {item.text}
         </ThemedText>
       </TouchableOpacity>
     )
@@ -60,10 +78,10 @@ export function GameScreen() {
       <Header />
       <Background style={styles.body}>
         <DragList
-          data={vers} // Données à afficher dans la liste (les vers ordonnés)
-          keyExtractor={(item) => item.key} // Clé unique pour chaque élément
-          renderItem={renderItem} // Fonction pour afficher chaque vers avec contrôle du drag
-          onReordered={onReordered} // Fonction appelée quand un vers est déplacé
+          data={vers}
+          keyExtractor={(item) => item.key}
+          renderItem={renderItem}
+          onReordered={onReordered}
           contentContainerStyle={{
             alignItems: 'center',
             flex: 1,
