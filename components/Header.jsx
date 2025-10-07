@@ -1,8 +1,9 @@
 // **************************** IMPORTS *****************************************//
 import { StatusBar } from 'expo-status-bar'
 import { ThemedText } from '@components/ThemedText'
-import { StyleSheet, Image, View } from 'react-native'
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native'
 import { useThemeColors } from '@hooks/useThemeColors'
+import { useNavigation } from '@react-navigation/native'
 // *****************************************************************************//
 
 // ************************** fonction Header *******************************//
@@ -13,17 +14,19 @@ import { useThemeColors } from '@hooks/useThemeColors'
 
 export function Header({ style, ...rest }) {
   const colors = useThemeColors()
+  const navigation = useNavigation()
   return (
     <View>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <Image
-          source={require('@assets/favicon.png')}
-          style={{ width: 24, height: 24 }}
-        />
-        <ThemedText typography="headline" color="textWhite">
-          PoéTri
-        </ThemedText>
+        <TouchableOpacity // bouton au style personalisable
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Image
+            source={require('@assets/logo-poetri-white.png')}
+            style={{ width: 110, height: 50 }}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -33,6 +36,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     paddingTop: 0,
     paddingRight: 6,
     paddingBottom: 6,
