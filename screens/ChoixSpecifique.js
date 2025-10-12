@@ -19,13 +19,13 @@ export function ChoixSpecifique({ navigation }) {
     >
       <Header />
       <Background style={styles.body}>
-        <ThemedText
+        {/* <ThemedText
           typography="headline"
           color="textWhite"
           style={styles.consigne}
         >
           Choisis un poème à réorganiser :
-        </ThemedText>
+        </ThemedText> */}
 
         {poemesDataBase.map((poeme) => {
           const auteur =

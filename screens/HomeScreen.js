@@ -17,7 +17,30 @@ export function HomeScreen({ navigation }) {
       edges={['top', 'bottom', 'left', 'right']}
     >
       <Header />
+      <ThemedText
+        typography="subtitle1"
+        color="textWhite"
+        style={styles.consigne}
+      >
+        Le jeu de la poésie à reconstituer
+      </ThemedText>
+
       <Background style={styles.body}>
+        <ThemedText
+          typography="subtitle2"
+          color="textWhite"
+          style={styles.consigne}
+        >
+          Découvre des poèmes dont les vers sont mélangés et amuse-toi à les
+          remettre dans l’ordre pour révéler toute la beauté de la poésie.
+        </ThemedText>
+        <ThemedText
+          typography="subtitle1"
+          color="textWhite"
+          style={styles.consigne}
+        >
+          Choisir mon poème à remettre dans l'ordre :
+        </ThemedText>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('ChoixSpecifique')}
