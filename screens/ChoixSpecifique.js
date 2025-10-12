@@ -5,10 +5,11 @@ import { Header } from '@components/Header'
 import { Background } from '@components/Background'
 import { ThemedText } from '@components/ThemedText'
 import { useThemeColors } from '@hooks/useThemeColors'
-
+import { poemesDataBase } from '@data/poemesDataBase'
+import { authorDataBase } from '@data/authorDataBase'
 // *****************************************************************************//
 
-export function HomeScreen({ navigation }) {
+export function ChoixSpecifique({ navigation }) {
   const colors = useThemeColors()
 
   return (
@@ -18,30 +19,40 @@ export function HomeScreen({ navigation }) {
     >
       <Header />
       <Background style={styles.body}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('ChoixSpecifique')}
+        <ThemedText
+          typography="headline"
+          color="textWhite"
+          style={styles.consigne}
         >
-          <ThemedText
-            typography="bodyLarger"
-            color="textBlack"
-            style={styles.choixPoeme}
-          >
-            Poème spécifique
-          </ThemedText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('ChoixAleatoire')}
-        >
-          <ThemedText
-            typography="bodyLarger"
-            color="textBlack"
-            style={styles.choixPoeme}
-          >
-            Poème aléatoire
-          </ThemedText>
-        </TouchableOpacity>
+          Choisis un poème à réorganiser :
+        </ThemedText>
+
+        {poemesDataBase.map((poeme) => {
+          const auteur =
+            authorDataBase.find((a) => a.idAuthor === poeme.idAuthor) || {}
+          const nomAffiche =
+            auteur.prenomAuteur && auteur.nomAuteur
+              ? `${auteur.prenomAuteur} ${auteur.nomAuteur}`
+              : poeme.idAuthor
+
+          return (
+            <TouchableOpacity
+              key={poeme.idPoeme}
+              style={styles.button}
+              onPress={() =>
+                navigation.navigate('Game', { poemeId: poeme.idPoeme })
+              }
+            >
+              <ThemedText
+                typography="bodyLarger"
+                color="textBlack"
+                style={styles.choixPoeme}
+              >
+                {poeme.titrePoeme}, {nomAffiche}
+              </ThemedText>
+            </TouchableOpacity>
+          )
+        })}
       </Background>
     </SafeAreaView>
   )
