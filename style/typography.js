@@ -16,13 +16,13 @@ export const styles = StyleSheet.create({
   },
   bodyLarge: {
     // Corps de texte plus grand
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 16,
   },
   bodyLarger: {
     // Corps de texte encore plus grand
-    fontSize: 14,
-    lineHeight: 16,
+    fontSize: 21,
+    lineHeight: 25,
   },
   small: {
     // Légendes et annotations (caption)

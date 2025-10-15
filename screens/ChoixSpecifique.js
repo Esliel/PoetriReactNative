@@ -44,7 +44,7 @@ export function ChoixSpecifique({ navigation }) {
               }
             >
               <ThemedText
-                typography="bodyLarger"
+                typography="bodyLarge"
                 color="textBlack"
                 style={styles.choixPoeme}
               >
