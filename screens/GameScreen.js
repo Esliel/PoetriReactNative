@@ -68,7 +68,7 @@ export function GameScreen() {
         onPressOut={onDragEnd}
         style={styles.vers}
       >
-        <ThemedText typography="bodyLarger" color="textBlack">
+        <ThemedText typography="bodyLarge" color="textBlack">
           {item.text}
         </ThemedText>
       </TouchableOpacity>
