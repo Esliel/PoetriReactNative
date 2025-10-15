@@ -38,28 +38,53 @@ export function ChoixAleatoire({ navigation }) {
       edges={['top', 'bottom', 'left', 'right']}
     >
       <Header />
+
       <Background style={styles.body}>
+        <ThemedText
+          typography="bodyLarger"
+          color="textWhite"
+          style={styles.consigne1}
+        >
+          Le poème avec lequel vous allez jouer est :
+        </ThemedText>
+        <ThemedText
+          typography="bodyLarger"
+          color="textWhite"
+          style={styles.consigne2}
+        >
+          {poeme.titrePoeme},
+        </ThemedText>
+        <ThemedText
+          typography="bodyLarger"
+          color="textWhite"
+          style={styles.consigne3}
+        >
+          {nomAffiche}
+        </ThemedText>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.button1}
           onPress={() =>
             navigation.navigate('Game', { poemeId: poeme.idPoeme })
           }
         >
           <ThemedText
-            typography="bodyLarger"
-            color="textBlack"
+            typography="headline"
+            color="primary"
             style={styles.choixPoeme}
           >
-            {poeme.titrePoeme}, {nomAffiche}
+            C’est parti !
           </ThemedText>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={choisirPoemeAleatoire}>
+        <TouchableOpacity
+          style={styles.button2}
+          onPress={choisirPoemeAleatoire}
+        >
           <ThemedText
             typography="bodyLarger"
-            color="textBlack"
+            color="primary"
             style={styles.choixPoeme}
           >
-            Relancer
+            ↻ Un autre poème
           </ThemedText>
         </TouchableOpacity>
       </Background>
@@ -78,6 +103,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'primary',
   },
+  consigne1: {
+    fontSize: 20,
+    textAlign: 'center',
+    paddingBottom: 30,
+  },
+  consigne2: {
+    textAlign: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
+    fontWeight: 'bold',
+  },
+  consigne3: {
+    textAlign: 'center',
+    paddingRight: 50,
+    paddingBottom: 80,
+    paddingLeft: 50,
+    fontWeight: 'bold',
+  },
   choixPoeme: {
     backgroundColor: '#FFFFFF',
     padding: 10,
@@ -85,7 +128,12 @@ const styles = StyleSheet.create({
     margin: 6,
     textAlign: 'center',
   },
-  button: {
+  button1: {
+    borderRadius: 30,
+    overflow: 'hidden',
+    paddingBottom: 80,
+  },
+  button2: {
     borderRadius: 30,
     overflow: 'hidden',
   },
